@@ -1,6 +1,6 @@
-import DarwinClipboard from './src/platform/darwin';
-import LinuxClipboard from './src/platform/linux';
-import WindowsClipboard from './src/platform/windows';
+import DarwinClipboard from './src/platform/darwin.js';
+import LinuxClipboard from './src/platform/linux.js';
+import WindowsClipboard from './src/platform/windows.js';
 
 export enum FilesActionEnum {
   Copy = 'Copy',

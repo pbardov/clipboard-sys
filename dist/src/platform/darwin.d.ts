@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { FilesActionType, SysClipboard } from '../..';
+import { FilesActionType, SysClipboard } from '../../index.js';
 export default class DarwinClipboard implements SysClipboard {
     readFiles(): Promise<any>;
     pasteFiles(action: FilesActionType, destinationFolder: string, ...files: Array<string>): Promise<void>;

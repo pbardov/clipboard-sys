@@ -1,7 +1,7 @@
-import execa from 'execa';
+import {execa} from 'execa';
 import fs from 'fs-extra';
 import pathLib from 'path';
-import { FilesActionEnum, FilesActionType, SysClipboard } from '../..';
+import { FilesActionEnum, FilesActionType, SysClipboard } from '../../index.js';
 
 export default class WindowsClipboard implements SysClipboard {
   async readText(): Promise<string> {

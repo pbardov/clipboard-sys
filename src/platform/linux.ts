@@ -1,7 +1,9 @@
-import execa = require('execa');
+import {execa} from 'execa';
 import fs from 'fs-extra';
 import pathLib from 'path';
-import { FilesActionEnum, FilesActionType, SysClipboard } from '../..';
+import {setTimeout} from 'timers/promises';
+import { FilesActionEnum, FilesActionType, SysClipboard } from '../../index.js';
+import {Readable} from 'stream';
 
 export default class LinuxClipboard implements SysClipboard {
   async readFiles(): Promise<Array<string>> {
@@ -80,11 +82,20 @@ export default class LinuxClipboard implements SysClipboard {
 
   async writeText(text: string): Promise<void> {
     try {
-      await execa('xclip -i -selection clipboard', {
-        stdio: ['pipe', 'pipe', 'inherit'],
+      const subProc = execa('xclip -i -selection clipboard', {
+        // stdio: ['inherit', 'inherit', 'ignore'],
         shell: true,
         input: text,
       });
+
+      await Promise.race([
+          subProc,
+          (async () => {
+            await setTimeout(100);
+            subProc.kill('SIGTERM', {forceKillAfterTimeout: 500});
+          })()
+      ])
+
     } catch (error: any) {
       throw new Error(`cannot write text due to clipboard error: ${error.message}`);
     }

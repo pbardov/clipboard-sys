@@ -1,7 +1,7 @@
-import { execa } from 'execa';
+import execa from 'execa';
 import fs from 'fs-extra';
 import pathLib from 'path';
-import { FilesActionEnum } from '../../index.js';
+import { FilesActionEnum } from '../..';
 export default class WindowsClipboard {
     async readText() {
         let result;
@@ -153,4 +153,3 @@ export default class WindowsClipboard {
         return result && 'stdout' in result && +result.stdout === 0;
     }
 }
-//# sourceMappingURL=windows.js.map

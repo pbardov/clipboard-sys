@@ -1,7 +1,6 @@
-import { execa } from 'execa';
 import fs from 'fs-extra';
 import pathLib from 'path';
-import { FilesActionEnum } from '../../index.js';
+import { FilesActionEnum } from '../..';
 export default class DarwinClipboard {
     async readFiles() {
         const { stdout, stderr } = await execa(`osascript`, ['-ss', pathLib.join(__dirname, 'darwinScript', 'read_file.applescript')], { shell: true });
@@ -122,4 +121,3 @@ export default class DarwinClipboard {
         }
     }
 }
-//# sourceMappingURL=darwin.js.map

@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { FilesActionType, SysClipboard } from '../..';
+import { FilesActionType, SysClipboard } from '../../index.js';
 export default class LinuxClipboard implements SysClipboard {
     readFiles(): Promise<Array<string>>;
     pasteFiles(action: FilesActionType, destinationFolder: string, ...files: Array<string>): Promise<void>;

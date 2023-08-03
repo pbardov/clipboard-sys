@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { FilesActionType, SysClipboard } from '../..';
+import { FilesActionType, SysClipboard } from '../../index.js';
 export default class WindowsClipboard implements SysClipboard {
     readText(): Promise<string>;
     writeText(text: string): Promise<void>;

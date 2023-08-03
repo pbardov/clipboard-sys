@@ -1,8 +1,6 @@
-import { execa } from 'execa';
 import fs from 'fs-extra';
 import pathLib from 'path';
-import { setTimeout } from 'timers/promises';
-import { FilesActionEnum } from '../../index.js';
+import { FilesActionEnum } from '../..';
 export default class LinuxClipboard {
     async readFiles() {
         const files = await this.readText();
@@ -73,18 +71,10 @@ export default class LinuxClipboard {
     }
     async writeText(text) {
         try {
-            const subProc = execa('xclip -i -selection clipboard', {
-                // stdio: ['inherit', 'inherit', 'ignore'],
+            await execa('xclip -i -selection clipboard', {
                 shell: true,
                 input: text,
             });
-            await Promise.race([
-                subProc,
-                (async () => {
-                    await setTimeout(500);
-                    subProc.kill('SIGTERM', { forceKillAfterTimeout: 500 });
-                })()
-            ]);
         }
         catch (error) {
             throw new Error(`cannot write text due to clipboard error: ${error.message}`);
@@ -144,4 +134,3 @@ export default class LinuxClipboard {
         }
     }
 }
-//# sourceMappingURL=linux.js.map

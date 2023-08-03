@@ -1,7 +1,7 @@
-import execa = require('execa');
+import {execa} from 'execa';
 import fs from 'fs-extra';
 import pathLib from 'path';
-import { FilesActionEnum, FilesActionType, SysClipboard } from '../..';
+import { FilesActionEnum, FilesActionType, SysClipboard } from '../../index.js';
 
 export default class DarwinClipboard implements SysClipboard {
   async readFiles(): Promise<any> {

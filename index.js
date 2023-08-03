@@ -1,6 +1,6 @@
-import DarwinClipboard from './src/platform/darwin.js';
-import LinuxClipboard from './src/platform/linux.js';
-import WindowsClipboard from './src/platform/windows.js';
+import DarwinClipboard from './src/platform/darwin';
+import LinuxClipboard from './src/platform/linux';
+import WindowsClipboard from './src/platform/windows';
 export var FilesActionEnum;
 (function (FilesActionEnum) {
     FilesActionEnum["Copy"] = "Copy";
@@ -18,4 +18,3 @@ export const clipboard = (() => {
             throw new Error('unsupported os');
     }
 })();
-//# sourceMappingURL=index.js.map
