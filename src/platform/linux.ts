@@ -80,9 +80,10 @@ export default class LinuxClipboard implements SysClipboard {
 
   async writeText(text: string): Promise<void> {
     try {
-      await execa(`echo -n '${text}' | xclip -r -selection clipboard`, {
-        stdio: 'inherit',
+      await execa('xclip -i -selection clipboard', {
+        stdio: ['pipe', 'pipe', 'inherit'],
         shell: true,
+        input: text,
       });
     } catch (error: any) {
       throw new Error(`cannot write text due to clipboard error: ${error.message}`);
